@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bevásárlókosár</title>
+    <link rel="stylesheet" href= "style/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
+
 </head>
 <body>
-    <h2>Bevásárló lista:</h2>
+    <h2>Bevásárlólista:</h2>
     <form>
-            <select>
-            </select>
-            <select>
-            </select>
-     
-        <input type="number" id="fname" name="fname">
-        <input type="text" id="fname" name="fname">
-        <input type="text" id="fname" name="fname">
-
-        <input type="text" id="lname" name="lname">
-        <button>négr</button>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">Kategória</label>
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">Termékek</label>
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <input type="number" class="form-control" placeholder="Mennyiség" aria-label="Mennyiség" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Egységár" aria-label="Egységár" disabled aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Összár" aria-label="Összár" disabled aria-describedby="basic-addon1">
+      </div>
+      <button type="button" class="btn btn-light">Négr</button>
       </form>
     <h2>Lista</h2>
-      <table>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <th>Kategória</th>
-          <th>Termék</th>
-          <th>Mennyiség</th>
-          <th>Egységár</th>
-          <th>Összesen</th>
-          <th>Műveletek</th>
+          <th scope="col">#</th>
+          <th scope="col">Terméknév</th>
+          <th scope="col">Mennyiség</th>
+          <th scope="col">Egységár</th>
+          <th scope="col">Összesen</th>
+          <th scope="col">Műveletek</th>
         </tr>
-      </table>
+      </thead>
+    </table>
 </body>
 </html>

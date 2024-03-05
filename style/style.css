@@ -1,17 +1,21 @@
-table, th, td {
-    border:1px solid black;
-  }
+
 form{
     display: flex;
     flex-direction: row;
     flex-wrap:  wrap;
     justify-content: space-evenly;
     border: 2px black solid;
+    background-color: wheat;
     padding: 20px;   
+    border-radius: 15px;
+    
 }
 body{
     width: 60vw;
     min-width: 400px;
     margin: auto;
     background-color: bisque;
+}
+h2{
+    text-decoration: underline;
 }
