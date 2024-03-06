@@ -23,21 +23,20 @@
         </select>
       </div>
       <div class="input-group mb-3">
-        <input type="number" class="form-control" placeholder="Mennyiség" aria-label="Mennyiség" aria-describedby="basic-addon1">
+        <input type="number" class="form-control" placeholder="Mennyiség" aria-label="Mennyiség" aria-describedby="basic-addon1" id="mennyi">
       </div>
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Egységár" aria-label="Egységár" disabled aria-describedby="basic-addon1" id="egyseg_ar">
       </div>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Összár" aria-label="Összár" disabled aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Összár" aria-label="Összár" disabled aria-describedby="basic-addon1" id="osszar">
       </div>
-      <button type="button" class="btn btn-light" onclick="addItems()">katt ide :)</button>
+      <button type="button" class="btn btn-light" id="gonb">katt</button>
       </form>
     <h2>Lista</h2>
     <table class="table table-striped">
-      <thead>
+      <thead id="asztal">
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Terméknév</th>
           <th scope="col">Mennyiség</th>
           <th scope="col">Egységár</th>
