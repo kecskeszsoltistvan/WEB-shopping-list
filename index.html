@@ -23,7 +23,7 @@
         </select>
       </div>
       <div class="input-group mb-3">
-        <input type="number" class="form-control" placeholder="Mennyiség" aria-label="Mennyiség" aria-describedby="basic-addon1" id="mennyi">
+        <input type="number" class="form-control" placeholder="Mennyiség" aria-label="Mennyiség" aria-describedby="basic-addon1" id="mennyi" min="1">
       </div>
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Egységár" aria-label="Egységár" disabled aria-describedby="basic-addon1" id="egyseg_ar">
@@ -31,7 +31,7 @@
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Összár" aria-label="Összár" disabled aria-describedby="basic-addon1" id="osszar">
       </div>
-      <button type="button" class="btn btn-light" id="gonb">katt</button>
+      <button type="button" class="btn btn-primary" id="gonb">Hozzáadás</button>
       </form>
     <h2>Lista</h2>
     <table class="table table-striped">
@@ -45,11 +45,16 @@
         </tr>
       </thead>
     </table>
+    <div>
+      <button type="button" class="btn btn-success" id="gonb2">Mentés</button>
+      <button type="button" class="btn btn-danger" id="gonb3">Teljes Törlés</button>
+      <p id="osszar_szamolo">Összár: -</p>
+    </div>
 
     <script src="Assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="Assets/js/axios.min.js"></script>
-    <script src="Assets/js/app.js"></script>
+    <script defer src="Assets/js/app.js"></script>
 
 
 </body>
