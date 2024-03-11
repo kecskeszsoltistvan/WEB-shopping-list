@@ -9,6 +9,7 @@ let gonb = document.querySelector('#gonb');
 let mentes = document.querySelector('#gonb2');
 let torles = document.querySelector('#gonb3');
 let nemtom = document.querySelector('#gonb4');
+let inport = document.querySelector('#import');
 let osszar_szamolo = document.querySelector('#osszar_szamolo');
 
 function getColumn(col) {
@@ -118,6 +119,61 @@ function fill_list(){
         })
     }, 500);
 }
+
+function tableContent(){
+    let s = "";
+    for (let index = 1; index < table.rows.length; index++) {
+        s += `<tr>${table.rows[index].innerHTML}</tr>`;
+    }
+    return s;
+
+}
+
+// Importálás
+inport.addEventListener("click", (event) => {
+    var input = document.createElement('input');
+input.type = 'file';
+input.setAttribute("accept", ".📋");
+input.onchange = e => { 
+
+   var file = e.target.files[0]; 
+
+   // Olvasó
+   var reader = new FileReader();
+   reader.readAsText(file,'UTF-8');
+
+   // Mikor vége az olvasásnak
+   reader.onload = readerEvent => {
+      var content = readerEvent.target.result; // A tartalma
+      console.log( content ); // Egyenlőre irassa ki
+      table.innerHTML = `<thead id="asztal"><tr><th scope="col">Terméknév</th><th scope="col">Mennyiség</th><th scope="col">Egységár</th><th scope="col">Összesen</th><th scope="col">Műveletek</th></tr></thead>${content}`;
+      localStorage.setItem("Tartalom", table.innerHTML);
+      osszar_szamolas()
+    }
+
+}
+
+input.click();
+})
+// Exportálás
+function createFile(){
+    //create or obtain the file's content
+    let content = tableContent();
+  
+    //create a file and put the content, name and type
+    let file = new File(["\ufeff"+content], 'Bevasarlolista.📋', {type: "text/plain:charset=UTF-8"});
+  
+    //create a ObjectURL in order to download the created file
+    url = window.URL.createObjectURL(file);
+  
+    //create a hidden link and set the href and click it
+    let a = document.createElement("a");
+    a.style = "display: none";
+    a.href = url;
+    a.download = file.name;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  } 
 
 gonb.addEventListener("click", (event) => { 
     if (amount.value != "" && egyseg_price.value != "" && osszar.value != "" || amount.value < 1){
