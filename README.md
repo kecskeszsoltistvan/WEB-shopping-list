@@ -11,7 +11,7 @@ A feladat: egy adatbázisban szereplő termékekből lehessen bevásárló list�
 - [x] Listából lehessen törölni tételt.
 - [x] A lista végén összesítse a program, hogy mennyi az összes fizetendő (tételenként is összesítsen).
 - [x] Lehessen üríteni a listát.
-- [ ] Lehessen menteni / betölteni a bevásárló listát.
+- [x] Lehessen menteni / betölteni a bevásárló listát.
 ### Kikötések:
 - [x] Az adatbázis MySQL, legyen egyszerű backend api-t az adatbázis lekérdezések kiszolgálására Node.js-ben. 
 - [ ] A frontend AngularJS legyen. 

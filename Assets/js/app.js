@@ -178,11 +178,11 @@ function createFile(){
 gonb.addEventListener("click", (event) => { 
     if (amount.value != "" && egyseg_price.value != "" && osszar.value != "" || amount.value < 1){
         let sor = document.createElement('tr');
-        let adat1 = document.createElement('th');
-        let adat2 = document.createElement('th');
-        let adat3 = document.createElement('th');
-        let adat4 = document.createElement('th');
-        let adat5 = document.createElement('th');
+        let adat1 = document.createElement('td');
+        let adat2 = document.createElement('td');
+        let adat3 = document.createElement('td');
+        let adat4 = document.createElement('td');
+        let adat5 = document.createElement('td');
         adat1.innerHTML = termek_select.value;
         adat2.innerHTML = amount.value;
         adat3.innerHTML = egyseg_price.value;

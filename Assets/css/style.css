@@ -28,3 +28,11 @@ h2{
     color: white;
 
 }
+.input-group-text{
+    font-weight: bold;
+}
+table, th, td{
+    border: 1px black solid; 
+    text-align: center;
+}
+
