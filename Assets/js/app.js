@@ -126,7 +126,6 @@ function tableContent(){
         s += `<tr>${table.rows[index].innerHTML}</tr>`;
     }
     return s;
-
 }
 
 // Importálás
@@ -145,7 +144,6 @@ input.onchange = e => {
    // Mikor vége az olvasásnak
    reader.onload = readerEvent => {
       var content = readerEvent.target.result; // A tartalma
-      console.log( content ); // Egyenlőre irassa ki
       table.innerHTML = `<thead id="asztal"><tr><th scope="col">Terméknév</th><th scope="col">Mennyiség</th><th scope="col">Egységár</th><th scope="col">Összesen</th><th scope="col">Műveletek</th></tr></thead>${content}`;
       localStorage.setItem("Tartalom", table.innerHTML);
       osszar_szamolas()
@@ -175,6 +173,10 @@ function createFile(){
     window.URL.revokeObjectURL(url);
   } 
 
+function torles_muvelet(){
+    osszar_szamolas(); 
+}
+
 gonb.addEventListener("click", (event) => { 
     if (amount.value != "" && egyseg_price.value != "" && osszar.value != "" || amount.value < 1){
         let sor = document.createElement('tr');
@@ -190,7 +192,7 @@ gonb.addEventListener("click", (event) => {
         let t_g = document.createElement('button');
         t_g.setAttribute("class", "delete");
         t_g.innerHTML = "X";
-        t_g.setAttribute("onClick", "osszar_szamolas(); return this.parentNode.parentNode.remove();")
+        t_g.setAttribute("onClick", "return this.parentNode.parentNode.remove(); osszar_szamolas();")
         adat5.appendChild(t_g)
         sor.appendChild(adat1);
         sor.appendChild(adat2);
