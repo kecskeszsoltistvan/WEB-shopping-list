@@ -12,7 +12,7 @@ let nemtom = document.querySelector('#gonb4');
 let inport = document.querySelector('#import');
 let osszar_szamolo = document.querySelector('#osszar_szamolo');
 
-function getColumn(col) {
+function getColumnSum(col) {
     let tab = table;
     let n = tab.rows.length;
     let i = 0;
@@ -30,9 +30,46 @@ function getColumn(col) {
     }
     return s;
 }
+function getColumn(col) {
+    let tab = table;
+    let n = tab.rows.length;
+    let i = 0;
+    let s = [];
+    if (col < 0) {
+        return null;
+    }
+
+    for (i = 1; i < n; i++) {
+        tr = tab.rows[i];
+        if (tr.cells.length > col) { 
+            td = tr.cells[col];
+            s.push(td.innerText);
+        } 
+    }
+    return s;
+}
+function getRowOfItemInColumn(item, col) {
+    let tab = table;
+    let n = tab.rows.length;
+    let i = 0;
+    if (col < 0) {
+        return null;
+    }
+
+    for (i = 1; i < n; i++) {
+        tr = tab.rows[i];
+        if (tr.cells.length > col) { 
+            td = tr.cells[col];
+            if (td.innerText == item) {
+                return i;
+            }
+        } 
+    }
+    return -1;
+}
 
 function osszar_szamolas(){
-    osszar_szamolo.innerHTML = `Összár: ${getColumn(3)}ft`;
+    osszar_szamolo.innerHTML = `Összár: ${getColumnSum(3)}ft`;
 }
 
 table.querySelectorAll('button').forEach(btn => btn.addEventListener("click", function(e){
@@ -67,6 +104,7 @@ torles.addEventListener("click", (event) => {
 })
 
 kategoria_select.addEventListener("change", (event) => {
+        termek_select.disabled = false;
     axios.get(`${serverURL}/items/cat/"${kategoria_select.value}"`).then(res=>{
         termek_select.innerHTML = ''
         res.data.forEach(item =>{
@@ -78,9 +116,10 @@ kategoria_select.addEventListener("change", (event) => {
         termek_select.selectedIndex = 0;
         axios.get(`${serverURL}/items/item/"${termek_select[termek_select.selectedIndex].value}"`).then(res=>{
             res.data.forEach(targy => {
-                egyseg_price.ariaDisabled = false;
+                egyseg_price.ariadisabled = false;
                 egyseg_price.value = `${targy.ar}`;
                 egyseg_price.ariaDisabled = true;
+                amount.value = 1;
                 osszar.value = amount.value * targy.ar;
                 
             })
@@ -89,6 +128,7 @@ kategoria_select.addEventListener("change", (event) => {
 });
 
 termek_select.addEventListener("change", (event) => {
+    amount.disabled = false;
     axios.get(`${serverURL}/items/item/"${termek_select.value}"`).then(res=>{
         res.data.forEach(item =>{
             egyseg_price.ariaDisabled = false;
@@ -179,27 +219,35 @@ function torles_muvelet(){
 
 gonb.addEventListener("click", (event) => { 
     if (amount.value != "" && egyseg_price.value != "" && osszar.value != "" || amount.value < 1){
-        let sor = document.createElement('tr');
-        let adat1 = document.createElement('td');
-        let adat2 = document.createElement('td');
-        let adat3 = document.createElement('td');
-        let adat4 = document.createElement('td');
-        let adat5 = document.createElement('td');
-        adat1.innerHTML = termek_select.value;
-        adat2.innerHTML = amount.value;
-        adat3.innerHTML = egyseg_price.value;
-        adat4.innerHTML = osszar.value;
-        let t_g = document.createElement('button');
-        t_g.setAttribute("class", "delete");
-        t_g.innerHTML = "X";
-        t_g.setAttribute("onClick", "return this.parentNode.parentNode.remove(); osszar_szamolas();")
-        adat5.appendChild(t_g)
-        sor.appendChild(adat1);
-        sor.appendChild(adat2);
-        sor.appendChild(adat3);
-        sor.appendChild(adat4);
-        sor.appendChild(adat5);
-        table.appendChild(sor);
+        if(getColumn(0).includes(termek_select.value)){
+            console.log(getRowOfItemInColumn(termek_select.value, 0));
+            table.rows[getRowOfItemInColumn(termek_select.value, 0)].cells[1].innerText = amount.value;
+            table.rows[getRowOfItemInColumn(termek_select.value, 0)].cells[3].innerText = table.rows[getRowOfItemInColumn(termek_select.value, 0)].cells[1].innerText * table.rows[getRowOfItemInColumn(termek_select.value, 0)].cells[2].innerText;
+
+        }
+        else{
+            let sor = document.createElement('tr');
+            let adat1 = document.createElement('td');
+            let adat2 = document.createElement('td');
+            let adat3 = document.createElement('td');
+            let adat4 = document.createElement('td');
+            let adat5 = document.createElement('td');
+            adat1.innerHTML = termek_select.value;
+            adat2.innerHTML = amount.value;
+            adat3.innerHTML = egyseg_price.value;
+            adat4.innerHTML = osszar.value;
+            let t_g = document.createElement('button');
+            t_g.setAttribute("class", "delete");
+            t_g.innerHTML = "X";
+            t_g.setAttribute("onClick", "return this.parentNode.parentNode.remove(); osszar_szamolas();")
+            adat5.appendChild(t_g)
+            sor.appendChild(adat1);
+            sor.appendChild(adat2);
+            sor.appendChild(adat3);
+            sor.appendChild(adat4);
+            sor.appendChild(adat5);
+            table.appendChild(sor);
+        }
     }
     else{
         alert("Nincs meg minden adat vagy rosszul.");

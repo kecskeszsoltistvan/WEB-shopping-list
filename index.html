@@ -19,12 +19,12 @@
       </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect02">Termékek</label>
-        <select class="form-select" id="inputGroupSelect02">
+        <select class="form-select" disabled id="inputGroupSelect02">
         </select>
       </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Mennyiség</label>
-        <input type="number" class="form-control" aria-describedby="basic-addon1" id="mennyi" min="1">
+        <input type="number" class="form-control" disabled aria-describedby="basic-addon1" id="mennyi" min="1" max="10000">
       </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Egységár</label>
@@ -44,13 +44,15 @@
           <th class="col-2" scope="col">Mennyiség</th>
           <th class="col-2" scope="col">Egységár</th> 
           <th class="col-2" scope="col">Összesen</th>
-          <th class="col-2" scope="col">Műveletek</th>
+          <th class="col-2" scope="col">Törlés</th>
         </tr>
       </thead>
     </table>
-    <div>
+    <div id="cucc">
+      <div>
       <button type="button" class="btn btn-success" id="gonb2">Mentés</button>
       <button type="button" class="btn btn-danger" id="gonb3">Teljes Törlés</button>
+      </div>
       <p id="osszar_szamolo">Összár: -</p>
     </div>
      <hr>
