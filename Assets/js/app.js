@@ -132,6 +132,7 @@ termek_select.addEventListener("change", (event) => {
     axios.get(`${serverURL}/items/item/"${termek_select.value}"`).then(res=>{
         res.data.forEach(item =>{
             egyseg_price.ariaDisabled = false;
+            amount.value = 1;
             egyseg_price.value = `${item.ar}`;
             egyseg_price.ariaDisabled = true;
             osszar.value = amount.value * item.ar;
@@ -214,7 +215,7 @@ function createFile(){
   } 
 
 function torles_muvelet(){
-    osszar_szamolas(); 
+    osszar_szamolas();  
 }
 
 gonb.addEventListener("click", (event) => { 
@@ -239,7 +240,10 @@ gonb.addEventListener("click", (event) => {
             let t_g = document.createElement('button');
             t_g.setAttribute("class", "delete");
             t_g.innerHTML = "X";
-            t_g.setAttribute("onClick", "return this.parentNode.parentNode.remove(); osszar_szamolas();")
+            t_g.setAttribute("onClick", "return this.parentNode.parentNode.remove();")
+            t_g.addEventListener("click", (event) =>{
+                osszar_szamolas();
+            })
             adat5.appendChild(t_g)
             sor.appendChild(adat1);
             sor.appendChild(adat2);
